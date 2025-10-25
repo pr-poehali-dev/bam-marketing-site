@@ -3,9 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
 
 export default function Index() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,6 +34,54 @@ export default function Index() {
             <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
           </nav>
           <Button className="hidden md:flex">Связаться</Button>
+          
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Icon name="Menu" size={24} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col gap-6 mt-8">
+                <a 
+                  href="#services" 
+                  className="text-lg font-medium hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Услуги
+                </a>
+                <a 
+                  href="#about" 
+                  className="text-lg font-medium hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  О нас
+                </a>
+                <a 
+                  href="#clients" 
+                  className="text-lg font-medium hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Клиенты
+                </a>
+                <a 
+                  href="#reviews" 
+                  className="text-lg font-medium hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Отзывы
+                </a>
+                <a 
+                  href="#contact" 
+                  className="text-lg font-medium hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Контакты
+                </a>
+                <Button className="mt-4" onClick={() => setMobileMenuOpen(false)}>Связаться</Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
